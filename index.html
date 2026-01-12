@@ -3,143 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeabkalu Assefa Merkebe | Portfolio</title>
+    <title>Yeabkalu Merkebe | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Courier New', Courier, monospace; }
-        .border-zinc { border: 1px solid #27272a; }
-        .text-zinc { color: #a1a1aa; }
-        img { filter: grayscale(100%); border: 1px solid #27272a; }
-        a:hover { text-decoration: underline; color: #fff; }
-        li { list-style-type: none; position: relative; padding-left: 1.5rem; }
-        li::before { content: '-'; position: absolute; left: 0; }
+        :root { --bg: #050505; --text: #e4e4e7; --border: #27272a; --muted: #71717a; --accent: #3fb950; }
+        .light-mode { --bg: #f4f4f5; --text: #09090b; --border: #d4d4d8; --muted: #71717a; --accent: #059669; }
+        
+        body { background-color: var(--bg); color: var(--text); font-family: 'Courier New', Courier, monospace; transition: all 0.3s ease; }
+        .grid-line { border: 1px solid var(--border); }
+        .text-muted { color: var(--muted); }
+        img { filter: grayscale(100%); transition: filter 0.3s; }
+        img:hover { filter: grayscale(0%); }
+        .btn-toggle { border: 1px solid var(--border); padding: 4px 12px; font-size: 10px; cursor: pointer; text-transform: uppercase; }
+        .btn-toggle:hover { background: var(--text); color: var(--bg); }
     </style>
 </head>
-<body class="p-8 md:p-20 max-w-4xl mx-auto">
+<body class="p-4 md:p-12 max-w-6xl mx-auto border-x grid-line min-h-screen">
 
-    <header class="mb-24 flex flex-col md:flex-row gap-10 items-start md:items-center">
-        <img src="profile.jpg" alt="Yeabkalu Merkebe" class="w-28 h-28 object-cover rounded-none" onerror="this.style.display='none'">
-        <div>
-            <h1 class="text-2xl font-bold tracking-tight uppercase" id="name">Yeabkalu Assefa Merkebe</h1>
-            <p class="text-zinc mt-1 text-sm" id="role-loc">Software Engineer & ML Researcher / Turku, Finland</p>
+    <div class="flex justify-between items-center mb-8 pb-4 border-b grid-line">
+        <div class="text-[10px] uppercase tracking-widest text-muted">
+            System: <span class="text-[var(--accent)]">Online</span> // Ver: 2.0.26
+        </div>
+        <button onclick="toggleTheme()" class="btn-toggle">Switch Theme</button>
+    </div>
+
+    <header class="grid grid-cols-1 md:grid-cols-12 gap-0 mb-16 grid-line">
+        <div class="md:col-span-3 p-6 border-r grid-line">
+            <img src="profile.jpeg" alt="Yeabkalu" class="w-full aspect-square object-cover" onerror="this.src='https://via.placeholder.com/300?text=Profile+Photo'">
+        </div>
+        <div class="md:col-span-9 p-8 flex flex-col justify-center">
+            <h1 class="text-4xl font-black tracking-tighter uppercase" id="name">Yeabkalu Assefa Merkebe</h1>
+            <p class="text-lg mt-2 font-bold uppercase tracking-tight text-muted">Software Engineer & ML Researcher</p>
+            <div class="mt-8 flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest">
+                <a id="email-link" href="#" class="hover:underline text-[var(--accent)]">[ Email ]</a>
+                <a id="github-link" href="#" target="_blank" class="hover:underline">[ GitHub ]</a>
+                <a id="linkedin-link" href="#" target="_blank" class="hover:underline">[ LinkedIn ]</a>
+            </div>
         </div>
     </header>
 
-    <main class="space-y-32">
-        <section id="about" class="text-sm leading-relaxed space-y-4 max-w-2xl text-zinc"></section>
-
-        <section class="border-zinc p-8 bg-zinc-900/10">
-            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc mb-8">/ Current Research</h2>
-            <h3 class="text-lg font-bold" id="res-title"></h3>
-            <p class="text-zinc text-[10px] mb-6 uppercase tracking-wider" id="res-period"></p>
-            <p id="res-desc" class="text-sm leading-relaxed mb-8"></p>
-            <div class="pt-8 border-t border-zinc-800">
-                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc">Clinical Relevance</span>
-                <p id="res-relevance" class="mt-4 text-sm italic text-zinc leading-relaxed"></p>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc mb-12">/ Professional Experience</h2>
-            <div id="exp-list" class="space-y-16"></div>
-        </section>
-
-        <section>
-            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc mb-12">/ Technical Projects</h2>
-            <div id="projects-grid" class="grid md:grid-cols-2 gap-10"></div>
-        </section>
-
-        <div class="grid md:grid-cols-2 gap-20">
+    <main class="grid grid-cols-1 md:grid-cols-12 gap-0 grid-line">
+        <aside class="md:col-span-4 p-8 border-r grid-line space-y-16">
             <section>
-                <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc mb-8">/ Core Stack</h2>
-                <div id="skills-grid" class="flex flex-wrap gap-x-6 gap-y-3 text-xs uppercase"></div>
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-6">/ Profile</h2>
+                <div id="about-text" class="text-sm leading-relaxed space-y-4"></div>
             </section>
+            
             <section>
-                <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc mb-8">/ Recognition</h2>
-                <div id="cert-list" class="space-y-6"></div>
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-6">/ Technical_Stack</h2>
+                <div id="skills-list" class="flex flex-wrap gap-2 text-[10px] font-bold"></div>
+            </section>
+
+            <section>
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-6">/ Recognition</h2>
+                <div id="cert-list" class="space-y-4"></div>
+            </section>
+        </aside>
+
+        <div class="md:col-span-8 p-8 space-y-20">
+            <section class="p-8 bg-zinc-900/10 grid-line">
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-8 text-[var(--accent)]">/ Active_Research</h2>
+                <h3 class="text-xl font-bold mb-4" id="res-title"></h3>
+                <p id="res-desc" class="text-sm text-muted leading-relaxed mb-6"></p>
+                <div class="border-t grid-line pt-6 mt-6">
+                    <span class="text-[10px] font-bold uppercase text-muted">Clinical Relevance</span>
+                    <p id="res-relevance" class="mt-4 text-sm italic leading-relaxed"></p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10">/ Experience_Timeline</h2>
+                <div id="exp-list" class="space-y-12"></div>
+            </section>
+
+            <section>
+                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10">/ Code_Repositories</h2>
+                <div id="proj-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </section>
         </div>
     </main>
 
-    <footer class="mt-40 pt-10 border-t border-zinc-900 flex justify-between text-[9px] uppercase tracking-[0.2em] text-zinc">
+    <footer class="mt-16 p-8 border grid-line text-[10px] text-muted uppercase flex justify-between">
         <span>Yeabkalu Merkebe © 2026</span>
-        <span>Systems: Operational</span>
+        <span>Turku, FI // 60.4518° N, 22.2666° E</span>
     </footer>
 
     <script>
-        async function loadSite() {
+        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+
+        async function init() {
             try {
-                const r = await fetch('data.json');
-                if (!r.ok) throw new Error('JSON load failed');
-                const data = await r.json();
-                render(data);
+                const r = await fetch('./data.json');
+                const d = await r.json();
+                render(d);
             } catch (e) {
-                console.log("Using backup rendering strategy...");
-                // The data is contained within the script as a fallback
-                render(getBackupData()); 
+                // FALLBACK DATA in case JSON fails to fetch
+                render({
+                    "profile": {"name": "Yeabkalu Assefa Merkebe", "role": "Software Engineer", "email": "yeabkalu@gmail.com", "github": "https://github.com/YeabAM", "linkedin": "https://www.linkedin.com/in/yeabkalu-merkebe-2a73b9114/"},
+                    "about": {"me": "Dedicated software engineer specializing in backend development and machine learning."},
+                    "research": {
+                        "title": "Using Kolmogorov-Arnold Networks (KAN) and Evolutionary Game Theory in Understanding Cancer Dynamics",
+                        "description": "Applying KAN architectures to model cellular interactions via Lotka-Volterra equations.",
+                        "relevance": "Shifting toward personalized oncology through predictive evolutionary modeling."
+                    },
+                    "experience": [
+                        [cite_start]{"company": "Vula", "role": "Full-Stack Engineer", "period": "Jun 2025 - Jul 2025", "bullets": ["AI-powered portfolio management[cite: 1]."]},
+                        [cite_start]{"company": "Hydrus", "role": "Backend Engineer", "period": "Nov 2024 - May 2025", "bullets": ["Sustainability automation and AWS[cite: 1]."]}
+                    ],
+                    "projects": [
+                        {"name": "Malaria Detection", "link": "https://github.com/YeabAM/malaria_detection_platform", "tech": "TF, OpenCV"},
+                        {"name": "RAG Chatbot", "link": "https://github.com/YeabAM/RAG-WIth-Langchain", "tech": "Langchain"}
+                    ],
+                    "skills": ["Python", "JS/TS", "C++", "Java", "Django", "AWS", "PostgreSQL", "ML/AI"],
+                    "certificates": [{"name": "EtCPC 9th Place", "achievement": "Programming", "year": "2021"}]
+                });
             }
         }
 
-        function render(data) {
-            // Profile & About
-            document.getElementById('name').innerText = data.profile.name;
-            document.getElementById('role-loc').innerText = `${data.profile.role} / ${data.profile.location}`;
-            const about = document.getElementById('about');
-            Object.values(data.about).forEach(val => about.innerHTML += `<p>${val}</p>`);
+        function render(d) {
+            document.getElementById('name').innerText = d.profile.name;
+            document.getElementById('email-link').href = `mailto:${d.profile.email}`;
+            document.getElementById('github-link').href = d.profile.github;
+            document.getElementById('linkedin-link').href = d.profile.linkedin;
+            
+            const about = document.getElementById('about-text');
+            Object.values(d.about).forEach(v => about.innerHTML += `<p>${v}</p>`);
 
-            // Research
-            document.getElementById('res-title').innerText = data.research.title;
-            document.getElementById('res-period').innerText = data.research.period;
-            document.getElementById('res-desc').innerText = data.research.description;
-            document.getElementById('res-relevance').innerText = data.research.relevance;
+            document.getElementById('res-title').innerText = d.research.title;
+            document.getElementById('res-desc').innerText = d.research.description;
+            document.getElementById('res-relevance').innerText = d.research.relevance;
 
-            [cite_start]// Experience [cite: 1]
-            const expList = document.getElementById('exp-list');
-            data.experience.forEach(e => {
-                expList.innerHTML += `<div>
-                    <h3 class="font-bold text-sm uppercase tracking-wider">${e.role} / ${e.company}</h3>
-                    <p class="text-[10px] text-zinc mt-1">${e.period}</p>
-                    <ul class="text-sm mt-4 text-zinc space-y-2 leading-relaxed">
-                        ${e.bullets.map(b => `<li>${b}</li>`).join('')}
-                    </ul>
+            const exp = document.getElementById('exp-list');
+            d.experience.forEach(e => {
+                exp.innerHTML += `<div class="border-l-2 grid-line pl-6 py-2">
+                    <h4 class="font-bold text-sm uppercase">${e.role} // ${e.company}</h4>
+                    <p class="text-muted text-[10px] mt-1">${e.period}</p>
+                    <ul class="text-xs mt-3 space-y-1">${(e.bullets || []).map(b => `<li>- ${b}</li>`).join('')}</ul>
                 </div>`;
             });
 
-            // Projects
-            const projGrid = document.getElementById('projects-grid');
-            data.projects.forEach(p => {
-                projGrid.innerHTML += `<div class="border-zinc p-8">
-                    <h3 class="font-bold text-xs uppercase tracking-widest underline underline-offset-8 mb-4">${p.name}</h3>
-                    <p class="text-[9px] text-zinc mb-4">${p.tech} // ${p.date}</p>
-                    <p class="text-sm text-zinc leading-relaxed mb-6">${p.desc}</p>
-                    <a href="${p.link}" target="_blank" class="text-[10px] uppercase border border-zinc-700 px-4 py-2 hover:bg-white hover:text-black transition inline-block">Source Code</a>
+            const proj = document.getElementById('proj-grid');
+            d.projects.forEach(p => {
+                proj.innerHTML += `<div class="p-4 grid-line hover:bg-zinc-800/10 transition">
+                    <div class="text-[10px] font-bold uppercase underline mb-2">${p.name}</div>
+                    <p class="text-[9px] text-muted mb-4">${p.tech || ''}</p>
+                    <a href="${p.link}" target="_blank" class="text-[9px] border grid-line px-2 py-1">[ SOURCE ]</a>
                 </div>`;
             });
 
-            // Skills
-            const skillGrid = document.getElementById('skills-grid');
-            data.skills.forEach(s => skillGrid.innerHTML += `<span>${s}</span>`);
+            const sk = document.getElementById('skills-list');
+            d.skills.forEach(s => sk.innerHTML += `<span class="px-2 py-1 border grid-line">${s}</span>`);
 
-            // Certs
-            const certList = document.getElementById('cert-list');
-            data.certificates.forEach(c => {
-                certList.innerHTML += `<div class="text-sm">
-                    <p class="font-bold">${c.name}</p>
-                    <p class="text-[10px] text-zinc mt-1 italic">${c.achievement} (${c.year})</p>
-                </div>`;
+            const ct = document.getElementById('cert-list');
+            d.certificates.forEach(c => {
+                ct.innerHTML += `<div><p class="text-xs font-bold underline">${c.name}</p><p class="text-[10px] text-muted mt-1">${c.achievement} (${c.year})</p></div>`;
             });
         }
-
-        function getBackupData() {
-            return {
-                "profile": {"name": "Yeabkalu Assefa Merkebe", "role": "Software Engineer", "location": "Turku, Finland"},
-                "about": {"me": "Dedicated software engineer specializing in backend development and machine learning."},
-                "research": {"title": "Loading...", "period": "", "description": "Please ensure data.json is in the repository root.", "relevance": ""},
-                "experience": [], "projects": [], "skills": [], "certificates": []
-            };
-        }
-
-        loadSite();
+        init();
     </script>
 </body>
 </html>
