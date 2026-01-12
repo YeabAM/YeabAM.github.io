@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeabkalu | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Courier New', Courier, monospace; }
+        .terminal-border { border: 1px solid #30363d; }
+        .accent { color: #3fb950; }
+        .dim { color: #8b949e; }
+        .cursor { display: inline-block; width: 10px; height: 1.2em; background: #3fb950; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="p-6 md:p-12 max-w-4xl mx-auto">
+
+    <header class="mb-12">
+        <div class="mb-2 accent">yeabkalu@portfolio:~$ <span class="text-white">cat profile.json</span></div>
+        <h1 class="text-3xl font-bold mb-1" id="name"></h1>
+        <p class="text-xl dim" id="role"></p>
+        <div class="mt-4 flex gap-4 text-sm">
+            <a id="email" href="#">[Email]</a>
+            <a id="github" href="#">[GitHub]</a>
+            <a id="linkedin" href="#">[LinkedIn]</a>
+        </div>
+    </header>
+
+    <main class="space-y-16">
+        <section id="about" class="leading-relaxed space-y-4"></section>
+
+        <section class="terminal-border p-6 bg-gray-900 bg-opacity-40">
+            <h2 class="accent mb-4 underline"># Research_Focus</h2>
+            <h3 class="text-lg font-bold" id="res-title"></h3>
+            <p class="dim text-xs mb-4" id="res-period"></p>
+            <p id="res-desc" class="mb-4"></p>
+            <div class="p-4 border-l-2 border-green-700 bg-black bg-opacity-30">
+                <span class="text-xs font-bold accent uppercase tracking-widest">Clinical Relevance:</span>
+                <p id="res-relevance" class="mt-2 italic text-sm"></p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="accent mb-4"># Professional_Experience</h2>
+            <div id="exp-list" class="space-y-8"></div>
+        </section>
+
+        <section>
+            <h2 class="accent mb-4"># Key_Projects</h2>
+            <div id="projects-grid" class="grid md:grid-cols-2 gap-4"></div>
+        </section>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <section>
+                <h2 class="accent mb-4"># Tech_Stack</h2>
+                <div id="skills-grid" class="grid grid-cols-2 gap-2 text-xs"></div>
+            </section>
+            <section>
+                <h2 class="accent mb-4"># Certifications</h2>
+                <div id="cert-list" class="space-y-4"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="mt-20 py-8 border-t border-gray-800 text-center dim text-xs">
+        <p>System Status: Online | Location: Turku, Finland</p>
+        <p class="mt-2">yeabkalu.github.io <span class="cursor"></span></p>
+    </footer>
+
+    <script>
+        fetch('data.json').then(r => r.json()).then(data => {
+            document.getElementById('name').innerText = data.profile.name;
+            document.getElementById('role').innerText = data.profile.role;
+            document.getElementById('email').href = `mailto:${data.profile.email}`;
+            document.getElementById('github').href = data.profile.github;
+            document.getElementById('linkedin').href = data.profile.linkedin;
+            
+            // About
+            const about = document.getElementById('about');
+            Object.values(data.about).forEach(text => {
+                const p = document.createElement('p');
+                p.innerText = text;
+                about.appendChild(p);
+            });
+
+            // Research
+            document.getElementById('res-title').innerText = data.research.title;
+            document.getElementById('res-period').innerText = data.research.period;
+            document.getElementById('res-desc').innerText = data.research.description;
+            document.getElementById('res-relevance').innerText = data.research.relevance;
+
+            // Experience
+            const expList = document.getElementById('exp-list');
+            data.experience.forEach(e => {
+                expList.innerHTML += `
+                    <div class="border-l border-gray-700 pl-4">
+                        <h3 class="font-bold text-green-500">${e.role} @ ${e.company}</h3>
+                        <p class="dim text-xs">${e.period}</p>
+                        <ul class="text-sm mt-2 space-y-1">${e.bullets.map(b => `<li>- ${b}</li>`).join('')}</ul>
+                    </div>`;
+            });
+
+            // Projects
+            const projGrid = document.getElementById('projects-grid');
+            data.projects.forEach(p => {
+                projGrid.innerHTML += `
+                    <div class="terminal-border p-4 hover:bg-gray-800 transition">
+                        <h3 class="font-bold accent">${p.name}</h3>
+                        <p class="text-xs dim mt-1">${p.tech} | ${p.date}</p>
+                        <p class="text-sm mt-3">${p.desc}</p>
+                        <a href="${p.link}" class="text-xs mt-4 block text-blue-400">[View Source]</a>
+                    </div>`;
+            });
+
+            // Skills
+            const skillGrid = document.getElementById('skills-grid');
+            data.skills.forEach(s => {
+                skillGrid.innerHTML += `<div class="terminal-border p-2 text-center">[ ${s} ]</div>`;
+            });
+
+            // Certificates
+            const certList = document.getElementById('cert-list');
+            data.certificates.forEach(c => {
+                certList.innerHTML += `<div class="p-3 bg-gray-800 bg-opacity-30 text-sm">
+                    <div class="accent">${c.name}</div>
+                    <div class="dim text-xs">${c.achievement} | ${c.year}</div>
+                </div>`;
+            });
+        });
+    </script>
+</body>
+</html>
