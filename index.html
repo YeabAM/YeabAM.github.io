@@ -1,165 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeabkalu Merkebe | Portfolio</title>
+    <title>Yeabkalu Assefa Merkebe | Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root { --bg: #050505; --text: #e4e4e7; --border: #27272a; --muted: #71717a; --accent: #3fb950; }
-        .light-mode { --bg: #f4f4f5; --text: #09090b; --border: #d4d4d8; --muted: #71717a; --accent: #059669; }
-        
-        body { background-color: var(--bg); color: var(--text); font-family: 'Courier New', Courier, monospace; transition: all 0.3s ease; }
-        .grid-line { border: 1px solid var(--border); }
-        .text-muted { color: var(--muted); }
-        img { filter: grayscale(100%); transition: filter 0.3s; }
-        img:hover { filter: grayscale(0%); }
-        .btn-toggle { border: 1px solid var(--border); padding: 4px 12px; font-size: 10px; cursor: pointer; text-transform: uppercase; }
-        .btn-toggle:hover { background: var(--text); color: var(--bg); }
-    </style>
-</head>
-<body class="p-4 md:p-12 max-w-6xl mx-auto border-x grid-line min-h-screen">
-
-    <div class="flex justify-between items-center mb-8 pb-4 border-b grid-line">
-        <div class="text-[10px] uppercase tracking-widest text-muted">
-            System: <span class="text-[var(--accent)]">Online</span> // Ver: 2.0.26
-        </div>
-        <button onclick="toggleTheme()" class="btn-toggle">Switch Theme</button>
-    </div>
-
-    <header class="grid grid-cols-1 md:grid-cols-12 gap-0 mb-16 grid-line">
-        <div class="md:col-span-3 p-6 border-r grid-line">
-            <img src="profile.jpeg" alt="Yeabkalu" class="w-full aspect-square object-cover" onerror="this.src='https://via.placeholder.com/300?text=Profile+Photo'">
-        </div>
-        <div class="md:col-span-9 p-8 flex flex-col justify-center">
-            <h1 class="text-4xl font-black tracking-tighter uppercase" id="name">Yeabkalu Assefa Merkebe</h1>
-            <p class="text-lg mt-2 font-bold uppercase tracking-tight text-muted">Software Engineer & ML Researcher</p>
-            <div class="mt-8 flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest">
-                <a id="email-link" href="#" class="hover:underline text-[var(--accent)]">[ Email ]</a>
-                <a id="github-link" href="#" target="_blank" class="hover:underline">[ GitHub ]</a>
-                <a id="linkedin-link" href="#" target="_blank" class="hover:underline">[ LinkedIn ]</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="grid grid-cols-1 md:grid-cols-12 gap-0 grid-line">
-        <aside class="md:col-span-4 p-8 border-r grid-line space-y-16">
-            <section>
-                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-6">/ Profile</h2>
-                <div id="about-text" class="text-sm leading-relaxed space-y-4"></div>
-            </section>
-            
-            <section>
-                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-6">/ Technical_Stack</h2>
-                <div id="skills-list" class="flex flex-wrap gap-2 text-[10px] font-bold"></div>
-            </section>
-
-            <section>
-                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-6">/ Recognition</h2>
-                <div id="cert-list" class="space-y-4"></div>
-            </section>
-        </aside>
-
-        <div class="md:col-span-8 p-8 space-y-20">
-            <section class="p-8 bg-zinc-900/10 grid-line">
-                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-8 text-[var(--accent)]">/ Active_Research</h2>
-                <h3 class="text-xl font-bold mb-4" id="res-title"></h3>
-                <p id="res-desc" class="text-sm text-muted leading-relaxed mb-6"></p>
-                <div class="border-t grid-line pt-6 mt-6">
-                    <span class="text-[10px] font-bold uppercase text-muted">Clinical Relevance</span>
-                    <p id="res-relevance" class="mt-4 text-sm italic leading-relaxed"></p>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10">/ Experience_Timeline</h2>
-                <div id="exp-list" class="space-y-12"></div>
-            </section>
-
-            <section>
-                <h2 class="text-xs font-bold uppercase tracking-[0.3em] mb-10">/ Code_Repositories</h2>
-                <div id="proj-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="mt-16 p-8 border grid-line text-[10px] text-muted uppercase flex justify-between">
-        <span>Yeabkalu Merkebe © 2026</span>
-        <span>Turku, FI // 60.4518° N, 22.2666° E</span>
-    </footer>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <script>
-        function toggleTheme() { document.body.classList.toggle('light-mode'); }
-
-        async function init() {
-            try {
-                const r = await fetch('./data.json');
-                const d = await r.json();
-                render(d);
-            } catch (e) {
-                // FALLBACK DATA in case JSON fails to fetch
-                render({
-                    "profile": {"name": "Yeabkalu Assefa Merkebe", "role": "Software Engineer", "email": "yeabkalu@gmail.com", "github": "https://github.com/YeabAM", "linkedin": "https://www.linkedin.com/in/yeabkalu-merkebe-2a73b9114/"},
-                    "about": {"me": "Dedicated software engineer specializing in backend development and machine learning."},
-                    "research": {
-                        "title": "Using Kolmogorov-Arnold Networks (KAN) and Evolutionary Game Theory in Understanding Cancer Dynamics",
-                        "description": "Applying KAN architectures to model cellular interactions via Lotka-Volterra equations.",
-                        "relevance": "Shifting toward personalized oncology through predictive evolutionary modeling."
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
-                    "experience": [
-                        [cite_start]{"company": "Vula", "role": "Full-Stack Engineer", "period": "Jun 2025 - Jul 2025", "bullets": ["AI-powered portfolio management[cite: 1]."]},
-                        [cite_start]{"company": "Hydrus", "role": "Backend Engineer", "period": "Nov 2024 - May 2025", "bullets": ["Sustainability automation and AWS[cite: 1]."]}
-                    ],
-                    "projects": [
-                        {"name": "Malaria Detection", "link": "https://github.com/YeabAM/malaria_detection_platform", "tech": "TF, OpenCV"},
-                        {"name": "RAG Chatbot", "link": "https://github.com/YeabAM/RAG-WIth-Langchain", "tech": "Langchain"}
-                    ],
-                    "skills": ["Python", "JS/TS", "C++", "Java", "Django", "AWS", "PostgreSQL", "ML/AI"],
-                    "certificates": [{"name": "EtCPC 9th Place", "achievement": "Programming", "year": "2021"}]
-                });
+                    colors: {
+                        teal: { 500: '#14b8a6', 400: '#2dd4bf' }
+                    }
+                }
             }
         }
-
-        function render(d) {
-            document.getElementById('name').innerText = d.profile.name;
-            document.getElementById('email-link').href = `mailto:${d.profile.email}`;
-            document.getElementById('github-link').href = d.profile.github;
-            document.getElementById('linkedin-link').href = d.profile.linkedin;
-            
-            const about = document.getElementById('about-text');
-            Object.values(d.about).forEach(v => about.innerHTML += `<p>${v}</p>`);
-
-            document.getElementById('res-title').innerText = d.research.title;
-            document.getElementById('res-desc').innerText = d.research.description;
-            document.getElementById('res-relevance').innerText = d.research.relevance;
-
-            const exp = document.getElementById('exp-list');
-            d.experience.forEach(e => {
-                exp.innerHTML += `<div class="border-l-2 grid-line pl-6 py-2">
-                    <h4 class="font-bold text-sm uppercase">${e.role} // ${e.company}</h4>
-                    <p class="text-muted text-[10px] mt-1">${e.period}</p>
-                    <ul class="text-xs mt-3 space-y-1">${(e.bullets || []).map(b => `<li>- ${b}</li>`).join('')}</ul>
-                </div>`;
-            });
-
-            const proj = document.getElementById('proj-grid');
-            d.projects.forEach(p => {
-                proj.innerHTML += `<div class="p-4 grid-line hover:bg-zinc-800/10 transition">
-                    <div class="text-[10px] font-bold uppercase underline mb-2">${p.name}</div>
-                    <p class="text-[9px] text-muted mb-4">${p.tech || ''}</p>
-                    <a href="${p.link}" target="_blank" class="text-[9px] border grid-line px-2 py-1">[ SOURCE ]</a>
-                </div>`;
-            });
-
-            const sk = document.getElementById('skills-list');
-            d.skills.forEach(s => sk.innerHTML += `<span class="px-2 py-1 border grid-line">${s}</span>`);
-
-            const ct = document.getElementById('cert-list');
-            d.certificates.forEach(c => {
-                ct.innerHTML += `<div><p class="text-xs font-bold underline">${c.name}</p><p class="text-[10px] text-muted mt-1">${c.achievement} (${c.year})</p></div>`;
-            });
+    </script>
+    <style>
+        .glass { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
         }
-        init();
+        .light .glass { 
+            background: rgba(255, 255, 255, 0.7); 
+            border: 1px solid rgba(0, 0, 0, 0.05); 
+        }
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="transition-colors duration-500 bg-white text-slate-600 dark:bg-[#0a0f1a] dark:text-slate-300">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-black/5 dark:border-white/5 bg-opacity-80">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <span class="font-extrabold text-2xl tracking-tighter text-slate-900 dark:text-white">
+                Yeabkalu<span class="text-teal-500">.</span>
+            </span>
+            
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex gap-10 text-sm font-semibold uppercase tracking-widest">
+                    <a href="#about" class="hover:text-teal-500 transition-colors">About</a>
+                    <a href="#research" class="hover:text-teal-500 transition-colors">Focus</a>
+                    <a href="#experience" class="hover:text-teal-500 transition-colors">Experience</a>
+                    <a href="#technical-projects" class="hover:text-teal-500 transition-colors">Projects</a>
+                </div>
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/5 hover:scale-110 transition-all border border-black/5 dark:border-white/10">
+                    <i id="theme-icon-sun" data-lucide="sun" class="w-5 h-5 hidden dark:block text-yellow-400"></i>
+                    <i id="theme-icon-moon" data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-700"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-48 pb-32 px-6">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto relative flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 order-2 md:order-1 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 text-teal-500 border border-teal-500/20 text-xs font-bold mb-8">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                    </span>
+                    TURKU, FINLAND &bull; SOFTWARE ENGINEER
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold text-slate-900 dark:text-white mb-8 tracking-tighter leading-[0.9]">
+                    Yeabkalu Assefa Merkebe
+                </h1>
+                <p class="text-2xl md:text-3xl font-light max-w-2xl mb-12 leading-relaxed mx-auto md:mx-0">
+                    <span class="text-teal-500 font-bold">Software Engineer</span> with a deep interest in <span class="dark:text-white text-slate-900 font-medium underline decoration-teal-500/30">Machine Learning</span>, building scalable backend systems and intelligent solutions.
+                </p>
+                <div class="flex items-center justify-center md:justify-start gap-2 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-teal-500"></i> Turku, Finland
+                </div>
+            </div>
+
+            <div class="flex-shrink-0 order-1 md:order-2">
+                <div class="relative w-48 h-48 md:w-72 md:h-72">
+                    <div class="absolute inset-0 border-4 border-teal-500 rounded-[2.5rem] rotate-6 opacity-20"></div>
+                    <div class="relative w-full h-full rounded-[2.5rem] overflow-hidden border-4 border-teal-500 shadow-2xl shadow-teal-500/20 bg-slate-100 dark:bg-white/5">
+                        <img src="profile.jpeg" 
+                             alt="Yeabkalu Assefa Merkebe" 
+                             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                             onerror="this.src='https://via.placeholder.com/600x600?text=Profile+Image'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-6 space-y-40 pb-40">
+        
+        <!-- About Section -->
+        <section id="about" class="section-fade grid md:grid-cols-2 gap-16 items-start">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="terminal" class="w-6 h-6 text-teal-500"></i>
+                    <span class="text-teal-500 font-mono text-sm tracking-[0.2em] font-bold uppercase">Background</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-8">About Me</h2>
+                <div class="space-y-6 text-lg leading-relaxed text-slate-500 dark:text-slate-400">
+                    <p>I am a dedicated software engineer specializing in backend development, with a strong passion for creating scalable, efficient, and impactful solutions.</p>
+                    <p>I thrive on solving challenging problems and continuously learning new technologies, particularly where software engineering intersects with machine learning.</p>
+                    <p>My goal is to contribute to systems that empower users and deliver measurable outcomes, optimizing complex processes through robust engineering and data-driven insights.</p>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Technical Arsenal</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <script>
+                        const skills = ['Python', 'JavaScript', 'TypeScript', 'Java', 'Django', 'Express.js', 'PostgreSQL', 'MongoDB', 'AWS', 'Docker', 'Machine Learning', 'Data Analysis', 'GraphQL', 'CI/CD'];
+                        document.write(skills.map(skill => `
+                            <div class="p-3.5 rounded-xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/[0.02] flex items-center gap-3 group hover:border-teal-500/50 transition-all">
+                                <div class="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
+                                <span class="font-semibold text-sm dark:text-slate-200 text-slate-700">${skill}</span>
+                            </div>
+                        `).join(''));
+                    </script>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Focus Spotlight -->
+        <section id="research" class="section-fade relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-blue-500/5 rounded-[2.5rem] -m-8 pointer-events-none"></div>
+            <div class="flex items-center gap-3 mb-4">
+                <i data-lucide="microscope" class="w-6 h-6 text-teal-500"></i>
+                <span class="text-teal-500 font-mono text-sm tracking-[0.2em] font-bold uppercase">Academic Focus</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-10">Machine Learning Interest</h2>
+            
+            <div class="rounded-[2rem] p-8 md:p-14 relative overflow-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-white/[0.03] shadow-2xl">
+                <div class="absolute top-0 right-0 p-12 opacity-[0.03] dark:opacity-[0.07] pointer-events-none">
+                    <i data-lucide="cpu" class="w-64 h-64 text-teal-500"></i>
+                </div>
+                <div class="max-w-4xl relative">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-slate-900 dark:text-white">Using Kolmogorov-Arnold Networks (KAN) and Evolutionary Game Theory (EGT)</h3>
+                    <p class="text-teal-500 font-mono font-bold mb-8">Oct 2025 - Present &bull; EDISS Master's Program</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div>
+                            <h4 class="text-xs font-black uppercase tracking-tighter text-slate-400 mb-3 underline decoration-teal-500/50 decoration-2">The Methodology</h4>
+                            <p class="text-lg leading-relaxed text-slate-500 dark:text-slate-400">Modeling the evolution of cancer cell populations using Kolmogorov-Arnold Networks (KAN) as part of my Master's studies. By integrating Evolutionary Game Theory, we simulate adaptation within tumor microenvironments.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-black uppercase tracking-tighter text-slate-400 mb-3 underline decoration-teal-500/50 decoration-2">Significance</h4>
+                            <p class="text-lg leading-relaxed text-slate-500 dark:text-slate-400">Standard deep learning often lacks interpretability. My interest lies in using KANs to provide more transparent architectures to predict therapeutic resistance and support dynamic oncology treatments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="section-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <i data-lucide="briefcase" class="w-6 h-6 text-teal-500"></i>
+                <span class="text-teal-500 font-mono text-sm tracking-[0.2em] font-bold uppercase">Career Timeline</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-16">Work Experience</h2>
+            
+            <div class="space-y-20 border-l-2 border-black/5 dark:border-white/10 ml-4 pl-10 relative">
+                
+                <!-- Vula -->
+                <div class="relative group">
+                    <div class="absolute -left-[51px] top-0 w-5 h-5 rounded-full border-4 border-teal-500 bg-white dark:bg-[#0a0f1a] group-hover:scale-125 transition-transform"></div>
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Full-Stack Software Engineer</h3>
+                            <a href="https://www.vula.vc/" target="_blank" class="text-teal-500 font-bold text-lg hover:underline inline-flex items-center gap-1">Vula <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                        <span class="text-sm font-mono font-bold text-slate-400">Jun 2025 - Jul 2025</span>
+                    </div>
+                    <ul class="space-y-4 max-w-4xl text-slate-500 dark:text-slate-400">
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Built an AI-powered portfolio management system using LlamaParse and OpenAI APIs to process quarterly financial data from Excel, PDF, and text inputs.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Designed automated financial analytics calculating loan performance metrics, client acquisition rates, and social impact indicators across portfolios; reducing manual processing time by 10x.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Engineered a full-stack solution with React frontend and Express.js backend, integrating a PostgreSQL database.</li>
+                    </ul>
+                </div>
+
+                <!-- Hydrus -->
+                <div class="relative group">
+                    <div class="absolute -left-[51px] top-0 w-5 h-5 rounded-full border-4 border-teal-500 bg-white dark:bg-[#0a0f1a] group-hover:scale-125 transition-transform"></div>
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Backend Engineer</h3>
+                            <a href="https://www.hydrus.ai/" target="_blank" class="text-teal-500 font-bold text-lg hover:underline inline-flex items-center gap-1">Hydrus <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                        <span class="text-sm font-mono font-bold text-slate-400">Nov 2024 - May 2025</span>
+                    </div>
+                    <ul class="space-y-4 max-w-4xl text-slate-500 dark:text-slate-400">
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Developed and maintained backend systems powering automation tools for companies to track and manage sustainability and decarbonization goals.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Built a core feature to automate emissions and reduction calculations across large-scale decarbonization projects.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Enhanced API performance and data pipelines to ensure reliability and scalability in high-traffic enterprise environments.</li>
+                    </ul>
+                </div>
+
+                <!-- A2SV Lead -->
+                <div class="relative group">
+                    <div class="absolute -left-[51px] top-0 w-5 h-5 rounded-full border-4 border-teal-500 bg-white dark:bg-[#0a0f1a] group-hover:scale-125 transition-transform"></div>
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Development Lead</h3>
+                            <div class="flex flex-col">
+                                <a href="https://a2sv.org" target="_blank" class="text-teal-500 font-bold text-lg hover:underline inline-flex items-center gap-1">Africa To Silicon Valley (A2SV) <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                                <a href="https://adot.life/en" target="_blank" class="text-teal-500/80 font-medium text-sm hover:underline inline-flex items-center gap-1">Adot Platform <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                            </div>
+                        </div>
+                        <span class="text-sm font-mono font-bold text-slate-400">Mar 2023 - Oct 2024</span>
+                    </div>
+                    <ul class="space-y-4 max-w-4xl text-slate-500 dark:text-slate-400">
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Spearheaded the integration of key features with a 7-member full-stack team, ensuring seamless functionality across Adot components.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Enhanced core features with event-driven architecture reducing server load by 40% and database operations by 50%.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Leveraged Python and LLM to build chatbot support within the platform.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Secured semi-finalist status at Supernova competition during GITEX Tech Expo, ranking among the top 10 products.</li>
+                    </ul>
+                </div>
+
+                <!-- A2SV Backend -->
+                <div class="relative group">
+                    <div class="absolute -left-[51px] top-0 w-5 h-5 rounded-full border-4 border-teal-500 bg-white dark:bg-[#0a0f1a] group-hover:scale-125 transition-transform"></div>
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Backend Engineer</h3>
+                            <a href="https://a2sv.org" target="_blank" class="text-teal-500 font-bold text-lg hover:underline inline-flex items-center gap-1">Africa To Silicon Valley (A2SV) <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                        <span class="text-sm font-mono font-bold text-slate-400">Jul 2022 - Mar 2023</span>
+                    </div>
+                    <ul class="space-y-4 max-w-4xl text-slate-500 dark:text-slate-400">
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Orchestrated successful build, debugging, and upgrade of Python-based REST APIs ensuring full alignment with product specifications.</li>
+                        <li class="flex gap-4 text-lg"><i data-lucide="check-circle-2" class="w-6 h-6 text-teal-500 flex-shrink-0 mt-1"></i> Cut query time by 60% using aggregation pipelines for complex multi-collection queries in MongoDB.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section id="technical-projects" class="section-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <i data-lucide="code-2" class="w-6 h-6 text-teal-500"></i>
+                <span class="text-teal-500 font-mono text-sm tracking-[0.2em] font-bold uppercase">Featured Work</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-16">Technical Projects</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Malaria Detection -->
+                <div class="group p-8 rounded-[2rem] border border-black/5 dark:border-white/5 bg-white dark:bg-white/[0.02] hover:border-teal-500/50 transition-all shadow-xl shadow-black/[0.02]">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-3 bg-teal-500/10 rounded-2xl text-teal-500"><i data-lucide="heart-pulse"></i></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors">Malaria Detection System</h3>
+                    <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">Integrated AI detection from blood smear images, boosting model accuracy to 90% through transfer learning and hyperparameter tuning.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-[10px] font-bold font-mono uppercase bg-slate-100 dark:bg-white/5 rounded-lg tracking-wider">Django</span>
+                        <span class="px-3 py-1 text-[10px] font-bold font-mono uppercase bg-slate-100 dark:bg-white/5 rounded-lg tracking-wider">TensorFlow</span>
+                    </div>
+                </div>
+
+                <!-- RAG Chatbot -->
+                <div class="group p-8 rounded-[2rem] border border-black/5 dark:border-white/5 bg-white dark:bg-white/[0.02] hover:border-teal-500/50 transition-all shadow-xl shadow-black/[0.02]">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-3 bg-blue-500/10 rounded-2xl text-blue-500"><i data-lucide="message-square"></i></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors">RAG-Powered Chatbot</h3>
+                    <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">Built a Q&A system using Retrieval-Augmented Generation to process and query local document knowledge bases with optimized storage and retrieval.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-[10px] font-bold font-mono uppercase bg-slate-100 dark:bg-white/5 rounded-lg tracking-wider">Python</span>
+                        <span class="px-3 py-1 text-[10px] font-bold font-mono uppercase bg-slate-100 dark:bg-white/5 rounded-lg tracking-wider">Langchain</span>
+                        <span class="px-3 py-1 text-[10px] font-bold font-mono uppercase bg-slate-100 dark:bg-white/5 rounded-lg tracking-wider">ChromaDB</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recognition -->
+        <section id="certificates" class="section-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <i data-lucide="award" class="w-6 h-6 text-teal-500"></i>
+                <span class="text-teal-500 font-mono text-sm tracking-[0.2em] font-bold uppercase">Recognition</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-10">Awards & Honors</h2>
+            
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div class="p-6 rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/[0.01] flex items-center justify-between group hover:border-teal-500/50 transition-all">
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">EtCPC Competitive Programming</h4>
+                        <p class="text-teal-500 text-sm font-semibold">9th Place Nationally</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-slate-400">2021</span>
+                </div>
+                <div class="p-6 rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/[0.01] flex items-center justify-between group hover:border-teal-500/50 transition-all">
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Huawei Seeds for the Future</h4>
+                        <p class="text-teal-500 text-sm font-semibold">Excellence Award Recipient</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-slate-400">2021</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="pt-24 border-t border-black/5 dark:border-white/5 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-black/5 dark:border-white/5 pt-12 gap-6 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <span>&copy; 2026 Yeabkalu Assefa Merkebe</span>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            const isDark = htmlElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-fade').forEach(section => {
+            observer.observe(section);
+        });
+
+        if (localStorage.getItem('theme') === 'light') {
+            htmlElement.classList.remove('dark');
+        }
     </script>
 </body>
 </html>
