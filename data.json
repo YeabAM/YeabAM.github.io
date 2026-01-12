@@ -1,0 +1,88 @@
+{
+  "profile": {
+    "name": "Yeabkalu Assefa Merkebe",
+    "role": "Software Engineer & ML Researcher",
+    "location": "Turku, Finland",
+    "email": "yeabkalu@gmail.com",
+    "github": "https://github.com/your-username",
+    "linkedin": "https://linkedin.com/in/your-profile"
+  },
+  "about": {
+    [cite_start]"me": "I am a dedicated software engineer specializing in backend development, with a strong passion for creating scalable, efficient, and impactful solutions. I have a keen interest in applying machine learning to solve real-world problems and drive innovation in meaningful projects. [cite: 1]",
+    "drive": "I thrive on solving challenging problems and continuously learning new technologies, particularly in the areas of backend development and machine learning. [cite_start]I take pride in understanding the bigger picture of every project, ensuring my solutions align with business goals and create long-term value. [cite: 1]",
+    "goals": "I am particularly interested in building systems that harness the power of data and machine learning to optimize processes, improve decision-making, and tackle critical challenges. [cite_start]My goal is to contribute to impactful projects that empower users and deliver measurable outcomes. [cite: 1]",
+    "passion": "For me, software engineering and machine learning are not just about writing code or training models—they’re about creating tools and systems that transform ideas into actionable, user-centric solutions. [cite_start]I’m passionate about leveraging technology to make a positive difference in people’s lives and businesses. [cite: 1]"
+  },
+  "research": {
+    "title": "Using Kolmogorov-Arnold Networks (KAN) and Evolutionary Game Theory in Understanding Cancer Dynamics",
+    "period": "Oct 2025 - Present",
+    "description": "Currently exploring the synergy between KAN neural architectures and Evolutionary Game Theory (EGT) as part of a data-intensive systems study. [cite_start]This work begins by modeling cellular interactions via known dynamical systems such as Lotka-Volterra equations, with the goal of scaling to complex, high-dimensional cancer datasets. [cite: 1]",
+    "relevance": "This research is critical for personalized medicine. Unlike standard 'black-box' neural networks, KANs provide better interpretability for clinical use. [cite_start]By modeling cancer as an evolutionary game, we can predict how tumors adapt to treatment, allowing doctors to shift from static protocols to dynamic, patient-specific therapies that anticipate resistance before it happens. [cite: 1]"
+  },
+  "skills": [
+    "Python", "JavaScript", "TypeScript", "C++", "Java", "Django", "Express.js", 
+    "PostgreSQL", "MongoDB", "AWS", "Docker", "Machine Learning", 
+    "GraphQL", "Microservices", "CI/CD", "TensorFlow", "OpenCV"
+  ],
+  "experience": [
+    {
+      "company": "Vula",
+      "role": "Full-Stack Software Engineer",
+      "period": "Jun 2025 - Jul 2025",
+      "bullets": [
+        [cite_start]"Built an AI-powered portfolio management system for an SME-lender platform using LlamaParse and OpenAI APIs to process quarterly financial data from Excel, PDF, and text inputs. [cite: 1]",
+        [cite_start]"Designed automated financial analytics calculating loan performance metrics, reducing manual processing time by 10x. [cite: 1]",
+        [cite_start]"Engineered a full-stack solution with React frontend and Express.js backend with PostgreSQL. [cite: 1]"
+      ]
+    },
+    {
+      "company": "Hydrus",
+      "role": "Backend Engineer",
+      "period": "Nov 2024 - May 2025",
+      "bullets": [
+        [cite_start]"Developed and maintained backend systems for tools to track sustainability and decarbonization goals. [cite: 1]",
+        [cite_start]"Built a core feature to automate emissions and reduction calculations across large-scale projects. [cite: 1]",
+        [cite_start]"Enhanced API performance and data pipelines using DynamoDB, GraphQL, and AWS. [cite: 1]"
+      ]
+    },
+    {
+      "company": "Africa To Silicon Valley (A2SV)",
+      "role": "Development Lead / Backend Engineer",
+      "period": "Jul 2022 - Oct 2024",
+      "bullets": [
+        [cite_start]"Spearheaded a 7-member full-stack team to integrate key features for the Adot platform. [cite: 1]",
+        [cite_start]"Enhanced core features with event-driven architecture reducing server load by up to 40% and database operations by 50%. [cite: 1]",
+        [cite_start]"Cut query time by 60% using MongoDB aggregation pipelines for complex multi-collection queries. [cite: 1]",
+        [cite_start]"Leveraged Python and LLM to build chatbot support within the platform. [cite: 1]"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "RAG powered chatbot",
+      "date": "Aug 2024",
+      "tech": "Python, Langchain, ChromaDB",
+      "link": "#",
+      [cite_start]"desc": "Created a Q&A system using retrieval-augmented generation (RAG) to answer questions based on specific PDF documents. [cite: 1]"
+    },
+    {
+      "name": "Malaria Detection System",
+      "date": "Sep 2021 - May 2022",
+      "tech": "TensorFlow, OpenCV, Django",
+      "link": "#",
+      [cite_start]"desc": "AI-powered detection system using Light Blood Smear images, achieving 90% accuracy through fine-tuning hyperparameters. [cite: 1]"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "EtCPC Competitive Programming",
+      "achievement": "9th Place",
+      "year": "2021"
+    },
+    {
+      "name": "Huawei Seeds for the Future",
+      "achievement": "Participation Award & Excellence Award (Smart Watch)",
+      "year": "2021"
+    }
+  ]
+}
